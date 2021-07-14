@@ -212,6 +212,8 @@ namespace Mapsui.Rendering.Skia
                 using (var surface = SKSurface.Create(imageInfo))
                 {
                     if (surface == null) return null;
+                    if (intY < 0) return null;
+                    if (intY > height) return null;
 
                     surface.Canvas.ClipRect(new SKRect((float)(x - 1), (float)(y - 1), (float)(x + 1), (float)(y + 1)));
                     surface.Canvas.Clear(SKColors.Transparent);
