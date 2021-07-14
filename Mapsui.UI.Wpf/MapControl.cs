@@ -193,13 +193,13 @@ namespace Mapsui.UI.Wpf
             InitAnimation();
             Focusable = true;
         }
-        
+
 
 
         private void InitAnimation()
         {
             _zoomAnimation.Completed += ZoomAnimationCompleted;
-            _zoomAnimation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 1000));
+            _zoomAnimation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 250));
             _zoomAnimation.EasingFunction = new QuarticEase();
             Storyboard.SetTarget(_zoomAnimation, this);
             Storyboard.SetTargetProperty(_zoomAnimation, new PropertyPath("Resolution"));
@@ -294,7 +294,7 @@ namespace Mapsui.UI.Wpf
 
         private static bool IsInBoxZoomMode()
         {
-            return Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+            return false;// Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
         }
 
         private void MapControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
