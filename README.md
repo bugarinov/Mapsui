@@ -4,3 +4,4 @@
 Changelogs July 14, 2021
 - Disabled Box Zoom Mode
 - Reduced zoom animation duration
+- Prevented executing GetMapInfo if the mouse pointer is outside the viewport
