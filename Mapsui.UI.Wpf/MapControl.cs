@@ -281,33 +281,16 @@ namespace Mapsui.UI.Wpf
             _mouseDown = true;
             CaptureMouse();
 
-            if (!IsInBoxZoomMode())
+            if (IsClick(_currentMousePosition, _downMousePosition))
             {
-                if (IsClick(_currentMousePosition, _downMousePosition))
-                {
-                    HandleFeatureInfo(e);
-                    var mapInfoEventArgs = InvokeInfo(touchPosition, _downMousePosition, e.ClickCount);
-                    OnInfo(mapInfoEventArgs);
-                }
+                HandleFeatureInfo(e);
+                var mapInfoEventArgs = InvokeInfo(touchPosition, _downMousePosition, e.ClickCount);
+                OnInfo(mapInfoEventArgs);
             }
-        }
-
-        private static bool IsInBoxZoomMode()
-        {
-            return false;// Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
         }
 
         private void MapControlMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var mousePosition = e.GetPosition(this).ToMapsui();
-
-            if (IsInBoxZoomMode())
-            {
-                var previous = Viewport.ScreenToWorld(_previousMousePosition.X, _previousMousePosition.Y);
-                var current = Viewport.ScreenToWorld(mousePosition.X, mousePosition.Y);
-                ZoomToBox(previous, current);
-            }
-
             RefreshData();
             _mouseDown = false;
 
@@ -359,12 +342,6 @@ namespace Mapsui.UI.Wpf
 
         private void MapControlMouseMove(object sender, MouseEventArgs e)
         {
-            if (IsInBoxZoomMode())
-            {
-                DrawBbox(e.GetPosition(this));
-                return;
-            }
-
             _currentMousePosition = e.GetPosition(this).ToMapsui(); //Needed for both MouseMove and MouseWheel event
 
             if (_mouseDown)
