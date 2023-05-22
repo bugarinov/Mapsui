@@ -4,6 +4,7 @@ using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Providers;
 using Mapsui.Rendering;
+using Mapsui.Rendering.Skia;
 using Mapsui.Rendering.Skia.SkiaStyles;
 using Mapsui.Samples.Common.Helpers;
 using Mapsui.Styles;
@@ -24,7 +25,7 @@ namespace Mapsui.Samples.Common.Maps
     public class SkiaCustomStyleRenderer : ISkiaStyleRenderer
     {
         public static Random rnd = new Random();
-        public bool Draw(SKCanvas canvas, IReadOnlyViewport viewport, ILayer layer, IFeature feature, IStyle style, ISymbolCache symbolCache)
+        public bool Draw(SKCanvas canvas, IReadOnlyViewport viewport, ILayer layer, IFeature feature, IStyle style, ISymbolCache symbolCache, IDictionary<object, BitmapInfo> tileCache, long currentIteration)
         {
             if (!(feature.Geometry is global::Mapsui.Geometries.Point worldPoint))
                 return false;

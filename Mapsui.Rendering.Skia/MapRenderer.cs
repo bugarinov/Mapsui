@@ -152,7 +152,7 @@ namespace Mapsui.Rendering.Skia
                 // Save canvas
                 canvas.Save();
                 // We have a special renderer, so try, if it could draw this
-                var result = ((ISkiaStyleRenderer)StyleRenderers[style.GetType()]).Draw(canvas, viewport, layer, feature, style, _symbolCache);
+                var result = ((ISkiaStyleRenderer)StyleRenderers[style.GetType()]).Draw(canvas, viewport, layer, feature, style, _symbolCache, _tileCache, _currentIteration);
                 // Restore old canvas
                 canvas.Restore();
                 // Was it drawn?
