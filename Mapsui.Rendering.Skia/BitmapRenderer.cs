@@ -4,7 +4,7 @@ using System;
 
 namespace Mapsui.Rendering.Skia
 {
-    class BitmapRenderer
+    public class BitmapRenderer
     {
         // The field below is static for performance. Effect has not been measured.
         // Note that the default FilterQuality is None. Setting it explicitly to Low increases the quality.
